@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Cloud Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tool-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        }
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="min-h-screen gradient-bg text-white">
+        <!-- Header -->
+        <header class="container mx-auto py-6">
+            <h1 class="text-4xl font-bold text-center">🧠 Docker's Mini Cloud</h1>
+            <p class="text-center mt-2 text-lg opacity-80">Manage your cloud tools with ease</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="container mx-auto px-4 mb-8">
+            <input
+                type="text"
+                id="search"
+                placeholder="Search tools..."
+                class="w-full max-w-md mx-auto block p-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                onkeyup="filterTools()"
+            >
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="container mx-auto px-4">
+            <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for tool in tools %}
+                <div class="tool-card bg-white text-gray-800 rounded-xl p-6 shadow-lg">
+                    <h4 class="text-xl font-semibold text-blue-600">{{ tool.name }}</h4>
+                    <p class="mt-2 text-gray-600">{{ tool.description }}</p>
+                    <a
+                        href="http://localhost:{{ tool.port }}"
+                        target="_blank"
+                        class="mt-4 inline-block px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                    >
+                        Open {{ tool.name }} →
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Loading Spinner -->
+            <div id="loading" class="hidden text-center mt-8">
+                <div class="inline-block w-8 h-8 border-4 border-blue-400 border-t-transparent rounded-full spin"></div>
+                <p class="mt-2">Loading tools...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterTools() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const grid = document.getElementById('tools-grid');
+            const cards = grid.getElementsByClassName('tool-card');
+            const loading = document.getElementById('loading');
+
+            // Show loading spinner
+            grid.classList.add('opacity-50');
+            loading.classList.remove('hidden');
+
+            // Simulate async search
+            setTimeout(() => {
+                for (let card of cards) {
+                    const name = card.querySelector('h4').textContent.toLowerCase();
+                    card.style.display = name.includes(search) ? 'block' : 'none';
+                }
+                grid.classList.remove('opacity-50');
+                loading.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+</body>
+</html>

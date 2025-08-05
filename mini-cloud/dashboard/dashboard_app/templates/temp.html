@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Cloud Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tool-card, .metric-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tool-card:hover, .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        }
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .timeline-bar {
+            height: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Sidebar -->
+    <div class="fixed h-full bg-gray-800 w-64 p-4">
+        <div class="text-2xl font-bold mb-6">🧠 Mini Cloud</div>
+        <nav>
+            <ul>
+                <li class="mb-2"><a href="#" class="text-blue-400 hover:text-blue-300">Azure</a></li>
+                <li class="mb-2"><a href="#" class="text-gray-400 hover:text-gray-300">GCP</a></li>
+                <li class="mb-2"><a href="#" class="text-gray-400 hover:text-gray-300">AWS</a></li>
+                <li class="mb-2"><a href="#" class="text-gray-400 hover:text-gray-300">OCI</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 p-6">
+        <!-- Header -->
+        <header class="mb-6">
+            <h1 class="text-3xl font-bold">Mini Cloud Dashboard</h1>
+            <p class="text-gray-400">Overview as of 06:37 PM IST, Aug 05, 2025</p>
+        </header>
+
+        <!-- Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
+            <div class="metric-card bg-gray-800 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Public IP Address</h3>
+                <p class="text-3xl">86</p>
+                <p class="text-gray-400">Total Resources: 196</p>
+            </div>
+            <div class="metric-card bg-gray-800 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Virtual Network</h3>
+                <p class="text-3xl">76</p>
+                <p class="text-gray-400">Total Resources: 142</p>
+            </div>
+            <div class="metric-card bg-gray-800 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">File Share</h3>
+                <p class="text-3xl">70</p>
+                <p class="text-gray-400">Total Resources: 70</p>
+            </div>
+            <div class="metric-card bg-gray-800 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Table Storage</h3>
+                <p class="text-3xl">70</p>
+                <p class="text-gray-400">Total Resources: 70</p>
+            </div>
+            <div class="metric-card bg-gray-800 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Function</h3>
+                <p class="text-3xl">70</p>
+                <p class="text-gray-400">Total Resources: 70</p>
+            </div>
+        </div>
+
+        <!-- Event Timeline -->
+        <div class="bg-gray-800 p-4 rounded-lg mb-6">
+            <h2 class="text-xl font-semibold mb-2">Event Timeline</h2>
+            <div class="flex space-x-2">
+                <div class="timeline-bar bg-red-500" style="width: 10%;"></div>
+                <div class="timeline-bar bg-yellow-500" style="width: 15%;"></div>
+                <div class="timeline-bar bg-purple-500" style="width: 10%;"></div>
+                <div class="timeline-bar bg-red-500" style="width: 10%;"></div>
+                <div class="timeline-bar bg-gray-500" style="width: 20%;"></div>
+                <div class="timeline-bar bg-purple-500" style="width: 5%;"></div>
+                <div class="timeline-bar bg-yellow-500" style="width: 15%;"></div>
+                <div class="timeline-bar bg-gray-500" style="width: 15%;"></div>
+            </div>
+            <div class="flex justify-between text-sm text-gray-400 mt-2">
+                <span>Jan 01</span><span>Jan 08</span><span>Jan 15</span><span>Jan 22</span><span>Jan 29</span><span>Feb 05</span><span>Jan 12</span>
+            </div>
+            <div class="text-sm text-gray-400 mt-1">Red: Down, Yellow: Critical, Purple: Maintenance, Gray: Suspended</div>
+        </div>
+
+        <!-- Usage and Active Resources -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Daily Usage -->
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-2">Daily Usage per Service Type</h2>
+                <div class="space-y-2">
+                    <div class="h-40 bg-gray-700 rounded" style="background: repeating-linear-gradient(90deg, #3b82f6 0, #3b82f6 20%, #facc15 20%, #facc15 40%, #a855f7 40%, #a855f7 60%, #34d399 60%, #34d399 80%, #ef4444 80%, #ef4444 100%);"></div>
+                    <div class="text-sm text-gray-400 flex justify-between">
+                        <span>26-Sep</span><span>27-Sep</span><span>28-Sep</span><span>29-Sep</span><span>30-Sep</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Resources -->
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-2">Active Resources</h2>
+                <p class="text-gray-400 mb-2">Resource Group: 138 | Services: 51</p>
+                <ul class="space-y-2">
+                    <li class="flex justify-between"><span class="text-green-400">✓ vault-ilo-xr7-as-auto</span><span>zyker1</span></li>
+                    <li class="flex justify-between"><span class="text-green-400">✓ termination</span><span>zyker2</span></li>
+                    <li class="flex justify-between"><span class="text-green-400">✓ AKSManage</span><span>zyker3</span></li>
+                    <li class="flex justify-between"><span class="text-green-400">✓ LatestNetCore202071</span><span>zyker4</span></li>
+                    <li class="flex justify-between"><span class="text-green-400">✓ site247-openai</span><span>zyker5</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

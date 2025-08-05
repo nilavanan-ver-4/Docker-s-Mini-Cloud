@@ -1,0 +1,11 @@
+version: '3'
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma
+    container_name: uptime-kuma
+    ports:
+      - "3002:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+volumes:
+  uptime-kuma-data:

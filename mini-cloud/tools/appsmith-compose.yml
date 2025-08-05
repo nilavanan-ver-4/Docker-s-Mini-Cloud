@@ -1,0 +1,7 @@
+version: '3'
+services:
+  appsmith:
+    image: appsmith/appsmith-ce
+    container_name: appsmith
+    ports:
+      - "8083:80"

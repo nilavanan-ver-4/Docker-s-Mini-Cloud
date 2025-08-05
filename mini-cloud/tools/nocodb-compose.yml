@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nocodb:
+    image: nocodb/nocodb
+    container_name: nocodb
+    ports:
+      - "8082:8080"

@@ -7,12 +7,41 @@ It provides a self-hosted "mini cloud" environment using Docker Compose, includi
 
 ```
 mini-cloud/
-├── docker-compose.yml
-├── nginx/
-│   └── default.conf (optional for reverse proxy)
-├── prometheus.yml (for Prometheus config)
+├── database/
+│   ├── postgres-compose.yml
+│   ├── redis-compose.yml
+│   ├── mongo-compose.yml
+│   ├── cassandra-compose.yml
+│   └── neo4j-compose.yml
+├── tools/
+│   ├── portainer-compose.yml
+│   ├── adminer-compose.yml
+│   ├── pgadmin-compose.yml
+│   ├── filebrowser-compose.yml
+│   ├── appsmith-compose.yml
+│   ├── nocodb-compose.yml
+│   ├── code-server-compose.yml
+│   ├── grafana-compose.yml
+│   ├── prometheus-compose.yml
+│   ├── netdata-compose.yml
+│   ├── uptime-kuma-compose.yml
+│   ├── vaultwarden-compose.yml
+│   ├── nextcloud-compose.yml
+│   └── gitea-compose.yml
+├── dashboard/
+│   ├── manage.py
+│   ├── dashboard_project/
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── dashboard_app/
+│       ├── templates/
+│       │   └── index.html
+│       ├── views.py
+│       └── urls.py
 ├── README.md
-└── dashboard.html (optional: simple landing page for your tools)
+└── requirements.txt
 ```
 
 ---
@@ -39,10 +68,21 @@ mini-cloud/
 
 ---
 
+## 🧰 Databases (Each in Separate Compose File)
+
+* PostgreSQL (Relational)
+* Redis (Key-Value)
+* MongoDB (Document)
+* Cassandra (Wide-Column)
+* Neo4j (Graph)
+
+---
+
 ## 🛠️ Prerequisites
 
 * Docker installed: [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 * Docker Compose installed
+* Python 3.8+ for Django Dashboard
 * At least 4GB RAM (8GB recommended)
 
 ---
@@ -57,30 +97,44 @@ mini-cloud/
    ```
 
 2. **Start all services**
-
+   Give execute permission to the `start-all.sh` script and run it:
    ```bash
-   docker-compose up -d
+   chmod +x start-all.sh
+   ./start-all.sh
    ```
 
-3. **Access the tools in your browser**
+3. **Run Django Dashboard**
 
-| Tool        | URL                                              |
-| ----------- | ------------------------------------------------ |
-| Portainer   | [http://localhost:9000](http://localhost:9000)   |
-| Adminer     | [http://localhost:8080](http://localhost:8080)   |
-| pgAdmin     | [http://localhost:5050](http://localhost:5050)   |
-| MinIO       | [http://localhost:9001](http://localhost:9001)   |
-| FileBrowser | [http://localhost:8081](http://localhost:8081)   |
-| Code-Server | [http://localhost:8443](http://localhost:8443)   |
-| NocoDB      | [http://localhost:8082](http://localhost:8082)   |
-| Appsmith    | [http://localhost:8083](http://localhost:8083)   |
-| Grafana     | [http://localhost:3001](http://localhost:3001)   |
-| Prometheus  | [http://localhost:9090](http://localhost:9090)   |
-| Netdata     | [http://localhost:19999](http://localhost:19999) |
-| Uptime Kuma | [http://localhost:3002](http://localhost:3002)   |
-| Vaultwarden | [http://localhost:8085](http://localhost:8085)   |
-| Nextcloud   | [http://localhost:8086](http://localhost:8086)   |
-| Gitea       | [http://localhost:3000](http://localhost:3000)   |
+   ```bash
+   pip install -r requirements.txt
+   cd dashboard
+   python manage.py runserver
+   ```
+
+4. **Access the dashboard at:** [http://localhost:8000](http://localhost:8000)
+
+---
+
+## 🛠️ Dashboard Development Setup
+
+If you want to set up the Django dashboard from scratch, follow these steps:
+
+1. **Create the Django project and app**
+   ```bash
+   django-admin startproject dashboard_project dashboard
+   cd dashboard
+   python manage.py startapp dashboard_app
+   ```
+
+2. **Run database migrations**
+   ```bash
+   python manage.py migrate
+   ```
+
+3. **Run the development server**
+   ```bash
+   python manage.py runserver
+   ```
 
 ---
 
@@ -98,24 +152,24 @@ docker-compose up --build -d
 
 ---
 
-## 📌 Optional Enhancements
+## 📈 Optional Enhancements
 
-* Add a **reverse proxy** (e.g., Traefik or Nginx) for domain routing and HTTPS.
-* Use **Heimdall**, **Flame**, or **Dashy** as a dashboard to link to all services.
-* Connect external volumes for persistence.
-* Enable **authentication** and **TLS** for production.
+* Use Traefik/Nginx for reverse proxy and HTTPS
+* Use Heimdall or Dashy for visual dashboard (alternative)
+* Mount external volumes for persistence
+* Add Django admin features for CRUD on tool configurations
 
 ---
 
-## 🙋 Need Help?
+## 😍 Need Help?
 
-Feel free to open an issue in the repository or contact the maintainer.
+Open an issue or contact the maintainer for support.
 
 ---
 
 ## 📝 License
 
-MIT License - Feel free to modify and use this project.
+MIT License - Free to modify and use.
 
 ---
 

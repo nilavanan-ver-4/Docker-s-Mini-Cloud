@@ -9,3 +9,8 @@ services:
       - SYS_PTRACE
     security_opt:
       - apparmor:unconfined
+    labels:
+      - "mini-cloud.tool.name=Netdata"
+      - "mini-cloud.tool.description=System metrics dashboard"
+      - "mini-cloud.tool.category=Monitoring & Analytics"
+      - "mini-cloud.tool.port=19999"

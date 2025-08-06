@@ -7,3 +7,8 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    labels:
+      - "mini-cloud.tool.name=Prometheus"
+      - "mini-cloud.tool.description=Monitoring system"
+      - "mini-cloud.tool.category=Monitoring & Analytics"
+      - "mini-cloud.tool.port=9090"

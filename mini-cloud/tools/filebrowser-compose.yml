@@ -7,3 +7,8 @@ services:
       - "8081:80"
     volumes:
       - ./files:/srv
+    labels:
+      - "mini-cloud.tool.name=FileBrowser"
+      - "mini-cloud.tool.description=Web-based file manager"
+      - "mini-cloud.tool.category=Productivity"
+      - "mini-cloud.tool.port=8081"

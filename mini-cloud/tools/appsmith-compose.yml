@@ -5,3 +5,8 @@ services:
     container_name: appsmith
     ports:
       - "8083:80"
+    labels:
+      - "mini-cloud.tool.name=Appsmith"
+      - "mini-cloud.tool.description=Low-code internal app builder"
+      - "mini-cloud.tool.category=Productivity"
+      - "mini-cloud.tool.port=8083"

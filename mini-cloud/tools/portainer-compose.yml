@@ -8,5 +8,10 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+    labels:
+      - "mini-cloud.tool.name=Portainer"
+      - "mini-cloud.tool.description=Docker GUI manager"
+      - "mini-cloud.tool.category=Databases"
+      - "mini-cloud.tool.port=9000"
 volumes:
   portainer_data:

@@ -7,5 +7,10 @@ services:
       - "3000:3000"
     volumes:
       - gitea-data:/data
+    labels:
+      - "mini-cloud.tool.name=Gitea"
+      - "mini-cloud.tool.description=Lightweight Git hosting"
+      - "mini-cloud.tool.category=Developer Tools"
+      - "mini-cloud.tool.port=3000"
 volumes:
   gitea-data:

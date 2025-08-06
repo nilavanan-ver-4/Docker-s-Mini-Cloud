@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  coolify:
+    image: coollabsio/coolify:4
+    container_name: coolify
+    ports:
+      - "8001:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - coolify-data:/app/data
+    labels:
+      - "mini-cloud.tool.name=Coolify"
+      - "mini-cloud.tool.description=Self-host anything with a few clicks"
+      - "mini-cloud.tool.category=Hosting Platforms"
+      - "mini-cloud.tool.port=8001"
+volumes:
+  coolify-data:

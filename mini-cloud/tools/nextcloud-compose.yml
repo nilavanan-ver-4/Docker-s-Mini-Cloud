@@ -7,5 +7,10 @@ services:
       - "8086:80"
     volumes:
       - nextcloud:/var/www/html
+    labels:
+      - "mini-cloud.tool.name=Nextcloud"
+      - "mini-cloud.tool.description=Self-hosted cloud storage"
+      - "mini-cloud.tool.category=Productivity"
+      - "mini-cloud.tool.port=8086"
 volumes:
   nextcloud:

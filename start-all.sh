@@ -18,20 +18,40 @@
 
 #!/bin/bash
 
+# echo "🚀 Starting all databases..."
+# cd database
+# for file in *-compose.yml; do
+#   docker-compose -f "$file" up -d
+# done
+# cd ..
+
+# echo "🚀 Starting all tools..."
+# cd tools
+# for file in *-compose.yml; do
+#   docker-compose -f "$file" up -d
+# done
+# cd ..
+
+# echo "✅ All services are up!"
+
+#!/bin/bash
+set -e
+
 echo "🚀 Starting all databases..."
-cd database
+cd mini-cloud/database
 for file in *-compose.yml; do
-  docker-compose -f "$file" up -d
+  docker compose -f "$file" up -d
 done
-cd ..
+cd ../..
 
 echo "🚀 Starting all tools..."
-cd tools
+cd mini-cloud/tools
 for file in *-compose.yml; do
-  docker-compose -f "$file" up -d
+  docker compose -f "$file" up -d
 done
-cd ..
+cd ../..
 
 echo "✅ All services are up!"
+
 # chmod +x start-all.sh
 # ./start-all.sh

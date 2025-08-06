@@ -7,5 +7,10 @@ services:
       - "3002:3001"
     volumes:
       - uptime-kuma-data:/app/data
+    labels:
+      - "mini-cloud.tool.name=Uptime Kuma"
+      - "mini-cloud.tool.description=Self-hosted uptime monitor"
+      - "mini-cloud.tool.category=Monitoring & Analytics"
+      - "mini-cloud.tool.port=3002"
 volumes:
   uptime-kuma-data:

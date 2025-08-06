@@ -7,5 +7,10 @@ services:
       - "8085:80"
     volumes:
       - vaultwarden-data:/data
+    labels:
+      - "mini-cloud.tool.name=Vaultwarden"
+      - "mini-cloud.tool.description=Password manager"
+      - "mini-cloud.tool.category=Productivity"
+      - "mini-cloud.tool.port=8085"
 volumes:
   vaultwarden-data:

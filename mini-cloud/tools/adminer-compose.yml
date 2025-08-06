@@ -5,3 +5,8 @@ services:
     container_name: adminer
     ports:
       - "8080:8080"
+    labels:
+      - "mini-cloud.tool.name=Adminer"
+      - "mini-cloud.tool.description=Database admin tool"
+      - "mini-cloud.tool.category=Databases"
+      - "mini-cloud.tool.port=8080"

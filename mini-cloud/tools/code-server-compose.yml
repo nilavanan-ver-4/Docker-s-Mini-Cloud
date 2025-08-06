@@ -4,8 +4,13 @@ services:
     image: codercom/code-server
     container_name: code-server
     environment:
-      PASSWORD: "password"
+      PASSWORD: "${CODE_SERVER_PASSWORD}"
     ports:
       - "8443:8443"
     volumes:
       - ./code:/home/coder/project
+    labels:
+      - "mini-cloud.tool.name=Code Server"
+      - "mini-cloud.tool.description=VS Code in the browser"
+      - "mini-cloud.tool.category=Developer Tools"
+      - "mini-cloud.tool.port=8443"
